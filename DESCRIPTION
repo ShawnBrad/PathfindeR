@@ -6,6 +6,15 @@ Author: Who wrote it
 Maintainer: The package maintainer <shawn_williams@brown.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
+Imports:
+goseq,
+reactome.db,
+drosophila2.db,
+org.Hs.eg.db,
+magrittr,
+tibble,
+dplyr,
+AnnotationDbi
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
