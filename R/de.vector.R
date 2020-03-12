@@ -46,7 +46,7 @@ if (org == 'human') (dbi = org.Hs.eg.db)
     pull(Gene)
 
   assayed.genes <- AnnotationDbi::mapIds(dbi, keys = assayed.genes,
-                                         columns = "SYMBOL", keytype = gene.label.type, multiVals = 'first')  %>%
+                                         column = "SYMBOL", keytype = gene.label.type, multiVals = 'first')  %>%
     as.character()
 
   # remove nas
