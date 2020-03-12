@@ -34,9 +34,9 @@ if (org == 'human') (dbi = org.Hs.eg.db)
 
 
 
-  genes <- AnnotationDbi::select(dbi, keys = genes,
-                                 columns = "SYMBOL", keytype = gene.label.type)  %>%
-    dplyr::pull(SYMBOL)
+  genes <- AnnotationDbi::mapIds(dbi, keys = genes,
+                                 column = "SYMBOL", keytype = gene.label.type, multiVals = 'first')  %>%
+    as.character()
 
   # remove nas
   genes<- genes[!is.na(genes)]
@@ -45,9 +45,9 @@ if (org == 'human') (dbi = org.Hs.eg.db)
   assayed.genes <- results.table %>%
     pull(Gene)
 
-  assayed.genes <- AnnotationDbi::select(dbi, keys = assayed.genes,
-                                         columns = "SYMBOL", keytype = gene.label.type)  %>%
-    dplyr::pull(SYMBOL)
+  assayed.genes <- AnnotationDbi::mapIds(dbi, keys = assayed.genes,
+                                         columns = "SYMBOL", keytype = gene.label.type, multiVals = 'first')  %>%
+    as.character()
 
   # remove nas
   assayed.genes<- assayed.genes[! is.na(assayed.genes)]
