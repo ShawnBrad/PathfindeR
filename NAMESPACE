@@ -1,0 +1,12 @@
+export(reactome_seq)
+import(goseq)
+import(reactome.db)
+import(drosophila2.db)
+import(org.Hs.eg.db)
+importFrom(magrittr,"%>%")
+importFrom(tibble,"add_column")
+importFrom(dplyr,"mutate","pull","bind_rows","filter","left_join","select")
+importFrom(AnnotationDbi,"get","select", "mget")
+
+
+

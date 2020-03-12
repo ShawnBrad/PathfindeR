@@ -1,0 +1,11 @@
+Package: PathwayFindeR
+Type: Package
+Title: Looks For
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <shawn_williams@brown.edu>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
