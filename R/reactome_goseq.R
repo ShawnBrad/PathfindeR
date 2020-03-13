@@ -1,4 +1,4 @@
-reactome_goseq <- function(gene.vector, pwf, org = 'fly' ){
+reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
 
 
   if (org == 'fly'){
@@ -20,6 +20,8 @@ reactome_goseq <- function(gene.vector, pwf, org = 'fly' ){
     org.db <- org.Hs.egSYMBOL
   }
 
+  
+ 
 
   # run go seq
   temp.res <- goseq(pwf, gene2cat = Org_geneIDs) %>%
@@ -41,9 +43,14 @@ reactome_goseq <- function(gene.vector, pwf, org = 'fly' ){
   # get gene ist for each category
   for (.term in .id){
     allegs<-AnnotationDbi::get(.term, reactomePATHID2EXTID)
-    genes = unlist(mget(allegs,org.db),use.names = FALSE)
-    term.cg <- intersect(genes,de.genes)
+    genes = unlist(mget(allegs,org.db,ifnotfound = NA),use.names = FALSE)
+    if (sum(is.na(genes)) >0 ){
+      term.cg <- 'id missing'
+    } else {
+      term.cg <- intersect(genes,de.genes)
+    }
     out.genes <- c(out.genes, toString(term.cg))
+    
 
   }
   temp.res$Genes <- out.genes
