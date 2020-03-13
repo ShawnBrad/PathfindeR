@@ -2,8 +2,8 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
 
 
   if (org == 'fly'){
-    load("data/DM_pathways.RData")
-    load("data/DM_geneIDs.RData")
+    #load("data/DM_pathways.RData")
+    #load("data/DM_geneIDs.RData")
     Pathways <- DM_pathways
     Org_geneIDs = DM_geneIDs
     pathName_prefix <- 'Drosophila melanogaster: '
@@ -12,8 +12,8 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
 
 
   if (org == 'human'){
-    load("data/HS_pathways.RData")
-    load("data/HS_geneIDs.RData")
+    #load("data/HS_pathways.RData")
+    #load("data/HS_geneIDs.RData")
     Pathways <- HS_pathways
     Org_geneIDs = HS_geneIDs
     pathName_prefix <- 'Homo sapiens: '

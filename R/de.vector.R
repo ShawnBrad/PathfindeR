@@ -4,8 +4,8 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
 
   
   if (org == 'fly'){
-    load("data/DM_pathways.RData")
-    load("data/DM_geneIDs.RData")
+    #load("data/DM_pathways.RData")
+    #load("data/DM_geneIDs.RData")
     Pathways <- DM_pathways
     Org_geneIDs = DM_geneIDs
     pathName_prefix <- 'Drosophila melanogaster: '
@@ -15,8 +15,8 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
   
   
   if (org == 'human'){
-    load("data/HS_pathways.RData")
-    load("data/HS_geneIDs.RData")
+    #load("data/HS_pathways.RData")
+    #load("data/HS_geneIDs.RData")
     Pathways <- HS_pathways
     Org_geneIDs = HS_geneIDs
     pathName_prefix <- 'Homo sapiens: '
