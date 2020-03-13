@@ -1,6 +1,6 @@
-de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff , lfc.cutoff  ,
-                      lfc.label , gene.label , gene.label.type ,
-                      padj.label , org){
+de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cutoff , lfc.cutoff = lfc.cutoff  ,
+                      lfc.label = lfc.label , gene.label = gene.label , gene.label.type =gene.label.type ,
+                      padj.label = padj.label , org = organism.type){
 
 
 if (org == 'fly') (dbi = drosophila2.db)
@@ -40,7 +40,8 @@ if (org == 'human') (dbi = org.Hs.eg.db)
 
   # remove nas
   genes<- genes[!is.na(genes)]
-
+  genes<- genes[!duplicated(genes)]
+  
   # get gene universe
   assayed.genes <- results.table %>%
     pull(Gene)
@@ -51,10 +52,13 @@ if (org == 'human') (dbi = org.Hs.eg.db)
 
   # remove nas
   assayed.genes<- assayed.genes[! is.na(assayed.genes)]
-
+  assayed.genes<- assayed.genes[! duplicated(assayed.genes)]
   # set up gene vector
   gene.vec=as.integer(assayed.genes %in% genes )
   names(gene.vec) = assayed.genes
+  
+  gene.vec <- gene.vec[ names(gene.vec) %in% names(HS_geneIDs) ]
+  
   return(gene.vec)
 }
 
