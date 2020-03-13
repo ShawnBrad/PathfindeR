@@ -11,6 +11,7 @@ Imports:
   reactome.db,
   drosophila2.db,
   org.Hs.eg.db,
+  org.Dm.eg.db,
   magrittr,
   tibble,
   dplyr,

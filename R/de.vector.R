@@ -2,9 +2,29 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
                       lfc.label = lfc.label , gene.label = gene.label , gene.label.type =gene.label.type ,
                       padj.label = padj.label , org = organism.type){
 
+  
+  if (org == 'fly'){
+    load("data/DM_pathways.RData")
+    load("data/DM_geneIDs.RData")
+    Pathways <- DM_pathways
+    Org_geneIDs = DM_geneIDs
+    pathName_prefix <- 'Drosophila melanogaster: '
+    org.db <- org.Dm.egSYMBOL
+    dbi = drosophila2.db
+  }
+  
+  
+  if (org == 'human'){
+    load("data/HS_pathways.RData")
+    load("data/HS_geneIDs.RData")
+    Pathways <- HS_pathways
+    Org_geneIDs = HS_geneIDs
+    pathName_prefix <- 'Homo sapiens: '
+    org.db <- org.Hs.egSYMBOL
+    dbi = org.Hs.eg.db
+  }
+  
 
-if (org == 'fly') (dbi = drosophila2.db)
-if (org == 'human') (dbi = org.Hs.eg.db)
 
 
   lfc.label <- as.symbol(lfc.label)
@@ -57,7 +77,7 @@ if (org == 'human') (dbi = org.Hs.eg.db)
   gene.vec=as.integer(assayed.genes %in% genes )
   names(gene.vec) = assayed.genes
   
-  gene.vec <- gene.vec[ names(gene.vec) %in% names(HS_geneIDs) ]
+  gene.vec <- gene.vec[ names(gene.vec) %in% names(Org_geneIDs) ]
   
   return(gene.vec)
 }
