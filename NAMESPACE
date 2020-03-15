@@ -1,7 +1,6 @@
 export(reactome_seq)
 import(goseq)
 import(reactome.db)
-import(drosophila2.db)
 import(org.Hs.eg.db)
 import(org.Dm.eg.db)
 importFrom(magrittr,"%>%")
