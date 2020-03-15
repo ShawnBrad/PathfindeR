@@ -2,6 +2,7 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
                       lfc.label = lfc.label , gene.label = gene.label , gene.label.type =gene.label.type ,
                       padj.label = padj.label , org = organism.type){
 
+  ##### set up dbi parameters based on organism  #####
   
   if (org == 'fly'){
     #load("data/DM_pathways.RData")
@@ -15,7 +16,7 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
   
   
   if (org == 'human'){
-    #load("data/HS_pathways.RData")
+    #load("data/HS_pathways.RData)
     #load("data/HS_geneIDs.RData")
     Pathways <- HS_pathways
     Org_geneIDs = HS_geneIDs
@@ -24,8 +25,8 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
     dbi = org.Hs.eg.db
   }
   
-  #if (class(results.in)[1] != "tbl_df") results.in <- as_tibble(results.in, rownames = 'Gene')
-  
+
+  ##### determine de genes #######
   lfc.label <- as.symbol(lfc.label)
   gene.label <- as.symbol(gene.label)
   padj.label <- as.symbol(padj.label)
@@ -51,22 +52,20 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
       pull(!!gene.label)
   }
 
+  ######## convert de genes and universe  #######
+  #de.genes
   genes <- map.symbols(genes, .db = dbi )
 
-  
-  # get gene universe
+  # get gene universe and convert gene ids
   assayed.genes <- results.table %>% 
     pull(Gene) %>%
     map.symbols(.db = dbi )
-
-
-  
   
   # set up gene vector
   gene.vec=as.integer(assayed.genes %in% genes )
   names(gene.vec) = assayed.genes
   
-  gene.vec <- gene.vec[ names(gene.vec) %in% names(Org_geneIDs) ]
+  #gene.vec <- gene.vec[ names(gene.vec) %in% names(Org_geneIDs) ]
   
   return(gene.vec)
 }
