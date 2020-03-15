@@ -1,5 +1,5 @@
 de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cutoff , lfc.cutoff = lfc.cutoff  ,
-                      lfc.label = lfc.label , gene.label = gene.label , gene.label.type =gene.label.type ,
+                      lfc.label = lfc.label , gene.label = gene.label  ,
                       padj.label = padj.label , org = organism.type){
 
   ##### set up dbi parameters based on organism  #####
