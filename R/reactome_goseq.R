@@ -12,8 +12,7 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
 
 
   if (org == 'human'){
-    #load("data/HS_pathways.RData")
-    #load("data/HS_geneIDs.RData")
+   
     Pathways <- HS_pathways
     Org_geneIDs = HS_geneIDs
     pathName_prefix <- 'Homo sapiens: '
@@ -42,16 +41,12 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
 
   # get gene ist for each category
   for (.term in .id){
-    allegs<-AnnotationDbi::get(.term, reactomePATHID2EXTID)
-    genes = unlist(mget(allegs,org.db,ifnotfound = NA),use.names = FALSE)
-    if (sum(is.na(genes)) >0 ){
-      term.cg <- 'id missing'
-    } else {
-      term.cg <- intersect(genes,de.genes)
-    }
-    out.genes <- c(out.genes, toString(term.cg))
     
-
+    allegs<-AnnotationDbi::get(.term, reactomePATHID2EXTID) %>%
+      entrez.to.symbols(org.db)
+    
+    term.cg <- intersect(allegs,de.genes)
+    out.genes <- c(out.genes, toString(term.cg))
   }
   temp.res$Genes <- out.genes
   return(temp.res)
