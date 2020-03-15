@@ -1,4 +1,4 @@
-pwf <- function(gene.vector, org = organism.type){
+pwf <- function(gene.vector, org ){
 
   if (org == 'fly') ( genome = 'dm3')
   if (org == 'human') ( genome = 'hg19')

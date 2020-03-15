@@ -1,13 +1,13 @@
-reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
+reactome_goseq <- function(gene.vector, pwf, org = organism.type, use.method){
 
 
   if (org == 'fly'){
-    #load("data/DM_pathways.RData")
-    #load("data/DM_geneIDs.RData")
+
     Pathways <- DM_pathways
     Org_geneIDs = DM_geneIDs
     pathName_prefix <- 'Drosophila melanogaster: '
     org.db <- org.Dm.egSYMBOL
+    dbi = org.Dm.eg.db
   }
 
 
@@ -17,13 +17,15 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
     Org_geneIDs = HS_geneIDs
     pathName_prefix <- 'Homo sapiens: '
     org.db <- org.Hs.egSYMBOL
+    dbi = org.Hs.eg.db
   }
+  
 
   
  
 
   # run go seq
-  temp.res <- goseq(pwf, gene2cat = Org_geneIDs) %>%
+  temp.res <- goseq(pwf, gene2cat = Org_geneIDs, method = use.method) %>%
     mutate(padj= p.adjust(over_represented_pvalue, method="BH"))  %>%
     filter(padj <= 0.05) %>%
     left_join(Pathways,  by = c('category' = 'DB_ID')) %>%
@@ -40,10 +42,10 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type ){
   .id<- temp.res$category
 
   # get gene ist for each category
+
   for (.term in .id){
-    
-    allegs<-AnnotationDbi::get(.term, reactomePATHID2EXTID) %>%
-      entrez.to.symbols(org.db)
+    allegs<- AnnotationDbi::get(.term, reactomePATHID2EXTID)%>%
+      entrez.to.symbols(dbi)
     
     term.cg <- intersect(allegs,de.genes)
     out.genes <- c(out.genes, toString(term.cg))
