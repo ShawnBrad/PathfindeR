@@ -24,9 +24,8 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
     dbi = org.Hs.eg.db
   }
   
-
-
-
+  #if (class(results.in)[1] != "tbl_df") results.in <- as_tibble(results.in, rownames = 'Gene')
+  
   lfc.label <- as.symbol(lfc.label)
   gene.label <- as.symbol(gene.label)
   padj.label <- as.symbol(padj.label)
@@ -52,27 +51,17 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
       pull(!!gene.label)
   }
 
+  genes <- map.symbols(genes, .db = dbi )
 
-
-  genes <- AnnotationDbi::mapIds(dbi, keys = genes,
-                                 column = "SYMBOL", keytype = gene.label.type, multiVals = 'first')  %>%
-    as.character()
-
-  # remove nas
-  genes<- genes[!is.na(genes)]
-  genes<- genes[!duplicated(genes)]
   
   # get gene universe
-  assayed.genes <- results.table %>%
-    pull(Gene)
+  assayed.genes <- results.table %>% 
+    pull(Gene) %>%
+    map.symbols(.db = dbi )
 
-  assayed.genes <- AnnotationDbi::mapIds(dbi, keys = assayed.genes,
-                                         column = "SYMBOL", keytype = gene.label.type, multiVals = 'first')  %>%
-    as.character()
 
-  # remove nas
-  assayed.genes<- assayed.genes[! is.na(assayed.genes)]
-  assayed.genes<- assayed.genes[! duplicated(assayed.genes)]
+  
+  
   # set up gene vector
   gene.vec=as.integer(assayed.genes %in% genes )
   names(gene.vec) = assayed.genes
