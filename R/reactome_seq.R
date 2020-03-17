@@ -4,6 +4,12 @@ reactome_seq <- function(results.table, seperate.up.down = TRUE, p.cutoff = 0.05
                          lfc.label = 'log2FoldChange', gene.label = 'Gene', gene.label.type = "ENSEMBL",
                          padj.label = 'padj', organism.type = 'human', goseq.method = "Wallenius"){
   
+  ## Check for valid parameters 
+  organism.type.check(organism.type) 
+  table.format.check(results.table , gene.label)
+  gene.label.check(gene.label.type, organism.type)
+  
+  
   ##### set up dbi parameters based on organism  #####
   
   if (organism.type == 'fly'){
