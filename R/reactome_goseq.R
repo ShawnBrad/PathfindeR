@@ -25,7 +25,7 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type, use.method){
  
 
   # run go seq
-  temp.res <- goseq(pwf, gene2cat = Org_geneIDs, method = use.method) %>%
+  temp.res <- suppressMessages(goseq(pwf, gene2cat = Org_geneIDs, method = use.method)) %>%
     mutate(padj= p.adjust(over_represented_pvalue, method="BH"))  %>%
     filter(padj <= 0.05) %>%
     left_join(Pathways,  by = c('category' = 'DB_ID')) %>%
@@ -44,7 +44,7 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type, use.method){
   # get gene ist for each category
 
   for (.term in .id){
-    allegs<- AnnotationDbi::get(.term, reactomePATHID2EXTID)%>%
+    allegs<- suppressMessages(AnnotationDbi::get(.term, reactomePATHID2EXTID)) %>%
       entrez.to.symbols(dbi)
     
     term.cg <- intersect(allegs,de.genes)
