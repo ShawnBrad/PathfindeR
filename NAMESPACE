@@ -1,4 +1,7 @@
-exportPattern("reactome_.*")
+export("reactome_seq")
+export("reactome_barplot")
+export("reactome_lolliplot")
+export("reactome_bubbleplot")
 import(goseq)
 import(reactome.db)
 import(org.Hs.eg.db)
