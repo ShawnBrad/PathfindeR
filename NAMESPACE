@@ -1,4 +1,4 @@
-exportPattern("reactome_.*")
+exportPattern(".*")
 import(goseq)
 import(reactome.db)
 import(org.Hs.eg.db)
