@@ -6,10 +6,8 @@ import(goseq)
 import(reactome.db)
 import(org.Hs.eg.db)
 import(org.Dm.eg.db)
+importFrom("stats", "p.adjust")
 importFrom(magrittr,"%>%")
 importFrom(tibble,"add_column")
 importFrom(dplyr,"mutate","pull","bind_rows","filter","left_join","select")
 importFrom(AnnotationDbi,"get","mapIds", "mget","keytypes")
-
-
-
