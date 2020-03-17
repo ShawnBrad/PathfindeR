@@ -1,4 +1,7 @@
 export(reactome_seq)
+export(reactome_barplot)
+export(reactome_lolliplot)
+export(reactome_bubbleplot)
 import(goseq)
 import(reactome.db)
 import(org.Hs.eg.db)
@@ -6,7 +9,7 @@ import(org.Dm.eg.db)
 importFrom(magrittr,"%>%")
 importFrom(tibble,"add_column")
 importFrom(dplyr,"mutate","pull","bind_rows","filter","left_join","select")
-importFrom(AnnotationDbi,"get","mapIds", "mget")
+importFrom(AnnotationDbi,"get","mapIds", "mget","keytypes")
 
 
 
