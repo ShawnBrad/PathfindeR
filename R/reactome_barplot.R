@@ -13,3 +13,4 @@ reactome_barplot <- function(res.reactome){
     coord_flip() %>%
     return()
 }
+
