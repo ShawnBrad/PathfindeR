@@ -12,7 +12,6 @@
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom forcats fct_reorder
-#' @importFrom base return
 
 reactome_barplot <- function(res.reactome){
   colp <- c(up = 'darkred', down = 'darkblue')

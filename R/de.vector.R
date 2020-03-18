@@ -1,9 +1,13 @@
+#' @import org.Dm.eg.db
+#' @import org.Hs.eg.db
+#' @importFrom magrittr %>%
+#' @importFrom dplyr filter
+#' @importFrom dplyr pull
 de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cutoff , lfc.cutoff = lfc.cutoff,
                       lfc.label = lfc.label , gene.label = gene.label , gene.label.type = gene.label.type,
                       padj.label = padj.label , org){
 
   ##### set up dbi parameters based on organism  #####
-  
   if (org == 'fly'){
 
     Pathways <- DM_pathways
@@ -12,8 +16,6 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
     org.db <- org.Dm.egSYMBOL
     dbi = org.Dm.eg.db
   }
-  
-  
   if (org == 'human'){
 
     Pathways <- HS_pathways
@@ -23,8 +25,7 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
     dbi = org.Hs.eg.db
   }
   
-
-  # get de genes from results
+  ###### get de genes from results   #####
 
   if (seperate.up.down == 'up') {
     genes <- results.table %>%
@@ -57,8 +58,6 @@ de.vector <- function(results.table,seperate.up.down = 'none', p.cutoff = p.cuto
   # set up gene vector
   gene.vec=as.integer(assayed.genes %in% genes )
   names(gene.vec) = assayed.genes
-  
-  #gene.vec <- gene.vec[ names(gene.vec) %in% names(Org_geneIDs) ]
   
   return(gene.vec)
 }

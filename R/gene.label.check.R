@@ -1,3 +1,8 @@
+#' @import org.Dm.eg.db
+#' @import org.Hs.eg.db
+#' @importFrom AnnotationDbi keytypes
+
+
 gene.label.check <- function(gene.label.type, organism.type){
   # Check for support if fly
   if (organism.type == 'fly'){

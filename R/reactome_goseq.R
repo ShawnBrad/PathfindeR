@@ -1,3 +1,14 @@
+#' @import org.Dm.eg.db
+#' @import org.Hs.eg.db
+#' @import goseq
+#' @importFrom magrittr %>%
+#' @importFrom dplyr filter
+#' @importFrom dplyr pull
+#' @importFrom dplyr left_join
+#' @importFrom dplyr select
+#' @importFrom stats p.adjust
+#' @importFrom AnnotationDbi get
+
 reactome_goseq <- function(gene.vector, pwf, org = organism.type, use.method){
 
 
@@ -20,10 +31,6 @@ reactome_goseq <- function(gene.vector, pwf, org = organism.type, use.method){
     dbi = org.Hs.eg.db
   }
   
-
-  
- 
-
   # run go seq
   temp.res <- suppressMessages(goseq(pwf, gene2cat = Org_geneIDs, method = use.method)) %>%
     mutate(padj= p.adjust(over_represented_pvalue, method="BH"))  %>%

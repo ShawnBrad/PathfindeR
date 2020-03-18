@@ -12,8 +12,7 @@
 #' @importFrom ggplot2 geom_point
 #' @importFrom ggplot2 scale_size
 #' @importFrom ggplot2 geom_text
-#' @importFrom base return
-#' @importFrom base log10
+
 
 reactome_bubbleplot <- function(res.reactome){
   

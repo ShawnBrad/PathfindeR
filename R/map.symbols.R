@@ -1,3 +1,8 @@
+#' @import org.Dm.eg.db
+#' @import org.Hs.eg.db
+#' @importFrom AnnotationDbi mapIds
+#' @importFrom magrittr %>%
+
 map.symbols<- function(genes, .db, gene.label.type){
   ##### set up dbi parameters based on organism  #####
   
@@ -11,3 +16,4 @@ map.symbols<- function(genes, .db, gene.label.type){
   return(genes)
   
 }
+

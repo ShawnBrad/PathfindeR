@@ -14,8 +14,7 @@
 #' @importFrom ggplot2 scale_size
 #' @importFrom ggplot2 geom_segment
 #' @importFrom forcats fct_reorder
-#' @importFrom base return
-#' @importFrom base log10
+
 
 reactome_lolliplot <- function(res.reactome){
   colp <- c(up = 'darkred', down = 'darkblue')

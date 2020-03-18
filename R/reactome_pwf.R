@@ -1,3 +1,5 @@
+#' @import goseq
+
 pwf <- function(gene.vector, org ){
 
   if (org == 'fly') ( genome = 'dm3')

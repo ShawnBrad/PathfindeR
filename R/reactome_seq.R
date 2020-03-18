@@ -1,3 +1,12 @@
+#' @import org.Dm.eg.db
+#' @import org.Hs.eg.db
+#' @import goseq
+#' @importFrom magrittr %>%
+#' @importFrom dplyr bind_rows
+#' @importFrom dplyr add_columns
+
+
+
 
 #' @export
 reactome_seq <- function(results.table, seperate.up.down = TRUE, p.cutoff = 0.05, lfc.cutoff = 0.7 ,
