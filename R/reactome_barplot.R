@@ -1,4 +1,19 @@
 #' @export
+#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate
+#' @importFrom dplyr if_else
+#' @importFrom dplyr desc
+#' @importFrom dplyr arrange
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 geom_bar
+#' @importFrom ggplot2 xlab
+#' @importFrom ggplot2 ylab
+#' @importFrom ggplot2 coord_flip
+#' @importFrom ggplot2 scale_fill_manual
+#' @importFrom forcats fct_reorder
+#' @importFrom base return
+
 reactome_barplot <- function(res.reactome){
   colp <- c(up = 'darkred', down = 'darkblue')
   res.reactome %>%
@@ -14,4 +29,5 @@ reactome_barplot <- function(res.reactome){
     coord_flip() %>%
     return()
 }
+
 
