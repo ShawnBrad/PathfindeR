@@ -1,4 +1,23 @@
 #' @export
+#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate
+#' @importFrom dplyr if_else
+#' @importFrom dplyr desc
+#' @importFrom dplyr arrange
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 geom_bar
+#' @importFrom ggplot2 xlab
+#' @importFrom ggplot2 ylab
+#' @importFrom ggplot2 coord_flip
+#' @importFrom ggplot2 scale_fill_manual
+#' @importFrom ggplot2 geom_point
+#' @importFrom ggplot2 scale_size
+#' @importFrom ggplot2 geom_text
+#' @importFrom forcats fct_reorder
+#' @importFrom base return
+#' @importFrom base log10
+
 reactome_bubbleplot <- function(res.reactome){
   
   res.reactome %>%
@@ -15,6 +34,7 @@ reactome_bubbleplot <- function(res.reactome){
     ylab('log10 FDR')+ xlab('Ration of DE genes to genes in category') %>%
     return()
 }
+
 
 
 
