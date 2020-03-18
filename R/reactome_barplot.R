@@ -1,3 +1,4 @@
+#' @export
 reactome_barplot <- function(res.reactome){
   colp <- c(up = 'darkred', down = 'darkblue')
   res.reactome %>%

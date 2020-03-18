@@ -1,5 +1,5 @@
 
-
+#' @export
 reactome_seq <- function(results.table, seperate.up.down = TRUE, p.cutoff = 0.05, lfc.cutoff = 0.7 ,
                          lfc.label = 'log2FoldChange', gene.label = 'Gene', gene.label.type = "ENSEMBL",
                          padj.label = 'padj', organism.type = 'human', goseq.method = "Wallenius"){

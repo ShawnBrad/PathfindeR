@@ -1,3 +1,4 @@
+#' @export
 reactome_bubbleplot <- function(res.reactome){
   
   res.reactome %>%

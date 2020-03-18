@@ -1,3 +1,4 @@
+#' @export
 reactome_lolliplot <- function(res.reactome){
   colp <- c(up = 'darkred', down = 'darkblue')
   res.reactome %>%
