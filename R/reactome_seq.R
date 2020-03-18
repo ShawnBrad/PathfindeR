@@ -3,7 +3,7 @@
 #' @import goseq
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows
-#' @importFrom dplyr add_columns
+#' @importFrom tibble add_column
 
 
 
